@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LogoutButton from "../LogoutButton";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import "./Navbar.scss";
 
 interface Props {
@@ -7,6 +9,10 @@ interface Props {
 }
 
 const Navbar = ({ className }: Props) => {
+  const { state } = useAuthContext();
+
+  console.log("Navber: User:", state.user);
+
   return (
     <div className={`navbar ${className}`}>
       <div className="navbar-start">
@@ -62,9 +68,21 @@ const Navbar = ({ className }: Props) => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to={"/demo"} className="btn">
-          Demo
-        </Link>
+        {state.authIsReady && (
+          <>
+            <h5 className="px-2">Logged in as {state.user?.user_nicename}</h5>
+            <br />
+            <p className="badge badge-primary">
+              {state.user?.user_display_name}
+            </p>{" "}
+            <LogoutButton />
+          </>
+        )}
+        {!state.authIsReady && (
+          <Link to={"/login"}>
+            <button className="btn">Login</button>
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -16,6 +16,8 @@ import SendEmail from "./pages/SendEmail";
 import "./App.scss";
 import MoshPage from "./pages/MoshPage";
 import PageDaisyUI from "./pages/PageDaisyUI";
+import LoginPage from "./pages/LoginPage";
+import UserProfilePage from "./pages/UserProfilePage";
 
 function App() {
   return (
@@ -37,7 +39,8 @@ function App() {
               <Route path="/demo" element={<Demo />} />
               <Route path="/page-one" element={<PageDaisyUI />} />
               <Route path="/page-two" element={<MoshPage />} />
-              <Route path="/send-mail" element={<SendEmail />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/profile" element={<UserProfilePage />} />
               <Route path="/*" element={<NotFoundPage />} />
             </Routes>
           </Main>
